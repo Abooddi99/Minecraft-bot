@@ -1,0 +1,32 @@
+const mineflayer = require('mineflayer')
+
+function createBot() {
+
+const bot = mineflayer.createBot({
+  host: 'IP_SERVER',
+  port: 25565,
+  username: 'AFK_Bot'
+})
+
+bot.on('spawn', () => {
+  console.log('دخل البوت ✅')
+
+  setInterval(() => {
+
+    bot.setControlState('jump', true)
+
+    setTimeout(() => {
+      bot.setControlState('jump', false)
+    }, 1000)
+
+  }, 30000)
+})
+
+bot.on('end', () => {
+  console.log('انقطع ❌')
+  setTimeout(createBot, 5000)
+})
+
+}
+
+createBot()
